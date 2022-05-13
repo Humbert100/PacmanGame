@@ -166,7 +166,7 @@ def move():
         if abs(pacman - point) < 20:
             return 
 
-    ontimer(move, 100)
+    ontimer(move, 20) #Velocidad de pacman y ghosts
 
 
 def change(x, y):
