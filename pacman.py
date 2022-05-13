@@ -1,5 +1,6 @@
 """Pacman, classic arcade game.
-Author: Humberto Alejandro Rosas Téllez
+Author 1: Mariana Edith Ramírez Navarrete
+Author 2: Humberto Alejandro Rosas Téllez
 """
 
 from random import choice
