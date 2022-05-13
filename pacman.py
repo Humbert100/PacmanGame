@@ -123,29 +123,48 @@ def move():
     goto(pacman.x + 10, pacman.y + 10)
     dot(20, 'yellow')
 
-    for point, course in ghosts:
+    for point, course in ghosts: #point:position and course:direction of ghosts
         if valid(point + course):
             point.move(course)
         else:
-            options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
-            ]
+            #SABER DONDE ESTÁ ES PACMAN CON RESPECTO AL FANTASMA
+
+            if (pacman.x > point.x): #Se comprueba que el pacman está a la derecha del ghost
+                if(pacman.y > point.y): #Comprobación del pacman situado a arriba de lado derecho del ghost
+                    options = [
+                        vector(0,5), #Movimiento a la derecha
+                        vector(5,0)  #Se mueve arriba
+                    ]
+                else: #Pacman se encuentra abajo a la derecha del ghost
+                    options = [
+                        vector(0,-5), #Movimiento a la izquierda
+                        vector(5,0) #Movimiento arriba
+                    ]
+            else:
+                if(pacman.y > point.y): #Pacman está a la izquierda (arriba)
+                    options = [
+                        vector(0,5), #Movimiento a la derecha
+                        vector(-5,0) #Movimiento abajo
+                    ]   
+                else: #Pacman situado abajo a la izquierda del ghost
+                    options = [
+                        vector(0,-5), #Movimiento a la izquierda
+                        vector(-5,0) #Movimiento abajo
+                    ]         
+
             plan = choice(options)
             course.x = plan.x
-            course.y = plan.y
+            course.y = plan.y    
 
         up()
         goto(point.x + 10, point.y + 10)
         dot(20, 'red')
 
     update()
-
+#SE COME AL PACMAN
     for point, course in ghosts:
         if abs(pacman - point) < 20:
-            return
+            return 
 
     ontimer(move, 100)
 
